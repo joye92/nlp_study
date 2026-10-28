@@ -1,30 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-train_langid_cls.py —— 多语种「语种识别」分类器（综合实战脚本 · 课堂 8 语种版）
+此代码是在课堂8分类版本上修改出来的，训练的结果以及评测结果见result_report.txt文件
+train_langid_cls_12.py —— 多语种「语种识别」分类器（综合实战脚本 · 12类语种版）
 
-任务：一句话 → 它是什么语言（8 分类）
+任务：一句话 → 它是什么语言（12 分类）
 模型：Embedding → RNN → 掩码 MaxPool → LayerNorm → Dropout → Linear → Softmax
 损失：CrossEntropyLoss      优化器：Adam
-数据：data/langid/v8（课堂 8 语种）
+数据：data/langid/v12
 运行：CPU 即可，单线程实测约 35 秒。
 
-    python train_langid_cls.py                       # 课堂 8 语种
-    python train_langid_cls.py --save langid_rnn.pt  # 存档给 eval_langid.py 评测
-
-【本课想让学生看到的四件事】
-  1. 同一份代码、同一张字符表，换数据就能处理 8 种语言文字
-  2. 字符级不需要分词器：中文按字、英文按字母、印地语按字母+元音标记，一视同仁
-  3. 组件是一个个加进去的：去掉 LayerNorm / Dropout / RNN 都能现场对比
-  4. 错得最有意思的是 es ↔ pt（同一套拉丁字母），不是"模型没学会"
-
-【这份脚本是「8 类版」—— 语种列表和字符表都是写死的】
-  · LABELS 直接列出了这 8 个语种，模型的输出维度 = len(LABELS)
-  · 字符表不从训练集现算，而是读 data/langid/vocab/vocab_v8.txt（课堂用的那张表）
-  要换数据集/加语种时，这两处都得跟着改 —— 下一页的作业就是这个。
+    python train_langid_cls_12.py                       # 作业 12 语种
+    python train_langid_cls_12.py --save langid_rnn.pt  # 存档给 eval_langid.py 评测
 
 【字符表是怎么来的】见 build_char_vocab()：
   把训练集每句话按字拆开 → 统计每个字的出现次数 → 按次数从高到低编号。
-  已经生成好的表在 data/langid/vocab/vocab_v8.txt，每行「字符 \\t id \\t 出现次数」。
+  已经生成好的表在 data/langid/vocab/vocab_v12.txt，每行「字符 \\t id \\t 出现次数」。
 """
 
 import os
