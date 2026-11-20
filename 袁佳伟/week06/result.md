@@ -33,3 +33,9 @@
 | 方法 | 准确率 | Macro-F1 | 解析失败 |
 |---|---|---|---|
 | RoBERTa 微调 | 0.567 | 0.5578 | 0 |
+
+[cfg] pool=mean loss=CE class_weight=on fgm=off epochs=5 steps/epoch=834 eval_n=10000 save=on
+评测 8901 条（干净集）| 1.2 ms/条 | ECE=0.1472
+| 方法 | 准确率 | Macro-F1 | 解析失败 |
+|---|---|---|---|
+| RoBERTa 微调 | 0.5704 | 0.5646 | 0 |
